@@ -1,14 +1,14 @@
 package com.bignerdranch.android.hangman;
 
 public class Question {
-    String q1;
+    private String q1;
     private String q2;
     private String q3;
 
     public Question() {
-        this.q1 = "easy";
-        this.q2 = "normal";
-        this.q3 = "difficult";
+        this.q1 = "EASY";
+        this.q2 = "NORMAL";
+        this.q3 = "DIFFICULT";
     }
 
     public String getQ1() {

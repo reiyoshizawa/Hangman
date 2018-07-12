@@ -6,6 +6,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-//        cv = findViewById(R.id.hangman);
-//        animationHelper = new AnimationHelper(cv, 50);
     }
 
     public void start(View view) {
@@ -69,5 +71,10 @@ public class MainActivity extends AppCompatActivity {
 //        thread.start();
 //
 //    }
+
+
+
+    public void clickrerereButton(android.view.View view) {
+    }
 
 }

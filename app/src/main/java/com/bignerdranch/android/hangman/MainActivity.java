@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
+//        cv = findViewById(R.id.hangman);
+
+
     }
 
     public void start(View view) {

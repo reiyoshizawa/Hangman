@@ -1,14 +1,50 @@
 package com.bignerdranch.android.hangman;
 
+import java.util.ArrayList;
+
 public class Question {
     private String q1;
     private String q2;
     private String q3;
+    private String q4;
+    private String q5;
+    private String q6;
+    private String q7;
+    private String q8;
+    private String q9;
+    private String q10;
+    private ArrayList<String> question;
+
+    public ArrayList<String> getQuestion() {
+        question.add(this.getQ1());
+        question.add(this.getQ2());
+        question.add(this.getQ3());
+        question.add(this.getQ4());
+        question.add(this.getQ5());
+        question.add(this.getQ6());
+        question.add(this.getQ7());
+        question.add(this.getQ8());
+        question.add(this.getQ9());
+        question.add(this.getQ10());
+        return question;
+    }
+
+    public void setQuestion(ArrayList<String> question) {
+        this.question = question;
+    }
 
     public Question() {
-        this.q1 = "EASY";
-        this.q2 = "NORMAL";
-        this.q3 = "DIFFICULT";
+        this.q1 = "obstreperous";
+        this.q2 = "contumacious";
+        this.q3 = "mettlesome";
+        this.q4 = "cadge";
+        this.q5 = "pith";
+        this.q6 = "supine";
+        this.q7 = "remonstrate";
+        this.q8 = "inveigh";
+        this.q9 = "precepts";
+        this.q10 = "impute";
+
     }
 
     public String getQ1() {
@@ -33,5 +69,61 @@ public class Question {
 
     public void setQ3(String q3) {
         this.q3 = q3;
+    }
+
+    public String getQ4() {
+        return q4;
+    }
+
+    public void setQ4(String q4) {
+        this.q4 = q4;
+    }
+
+    public String getQ5() {
+        return q5;
+    }
+
+    public void setQ5(String q5) {
+        this.q5 = q5;
+    }
+
+    public String getQ6() {
+        return q6;
+    }
+
+    public void setQ6(String q6) {
+        this.q6 = q6;
+    }
+
+    public String getQ7() {
+        return q7;
+    }
+
+    public void setQ7(String q7) {
+        this.q7 = q7;
+    }
+
+    public String getQ8() {
+        return q8;
+    }
+
+    public void setQ8(String q8) {
+        this.q8 = q8;
+    }
+
+    public String getQ9() {
+        return q9;
+    }
+
+    public void setQ9(String q9) {
+        this.q9 = q9;
+    }
+
+    public String getQ10() {
+        return q10;
+    }
+
+    public void setQ10(String q10) {
+        this.q10 = q10;
     }
 }

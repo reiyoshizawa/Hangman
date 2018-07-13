@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -71,4 +72,5 @@ public class Hangman extends View{
 //            canvas.drawCircle(rainDrop.getX(),rainDrop.getY(),rainDrop.getRadius(), rainDrop.getPaint());
 //
     }
+
 }

@@ -12,14 +12,11 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class Hangman extends View{
-//    private ArrayList<RainDrop> drops = new ArrayList<>();
-    private int tick = 0;
 
     public Hangman(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Paint rainColor = new Paint();
@@ -40,14 +37,18 @@ public class Hangman extends View{
         @SuppressLint("DrawAllocation") Line2 line2 = new Line2();
 
         canvas.drawCircle(face.getX(), face.getY(),face.getRadius(),face.getFaceColor());
-        canvas.drawRect(hbody ,rainColor);
-        canvas.drawLines(leftFoot.getPtsLeftFoot(), rainColor);
-        canvas.drawLines(rightFoot.getPtsLeftFoot(), rainColor);
-        canvas.drawLines(leftHand.getPtsLeftFoot(), rainColor);
-        canvas.drawLines(rightHand.getPtsLeftFoot(), rainColor);
-        canvas.drawRect(hground ,rainColor);
-        canvas.drawLines(line1.getPtsLeftFoot(), rainColor);
-        canvas.drawLines(line2.getPtsLeftFoot(), rainColor);
+
+//        drawBody(canvas, rainColor, hbody);
+//
+//        canvas.drawLines(leftFoot.getPtsLeftFoot(), rainColor);
+//        canvas.drawLines(rightFoot.getPtsLeftFoot(), rainColor);
+//        canvas.drawLines(leftHand.getPtsLeftFoot(), rainColor);
+//        canvas.drawLines(rightHand.getPtsLeftFoot(), rainColor);
+//
+//        drawBody(canvas, rainColor, hground);
+//
+//        canvas.drawLines(line1.getPtsLeftFoot(), rainColor);
+//        canvas.drawLines(line2.getPtsLeftFoot(), rainColor);
 
 //        Rect rect2 = new Rect(10, 20, 30, 40);
 //        canvas.drawRect(rect, rainColor);
@@ -71,6 +72,10 @@ public class Hangman extends View{
 //            rainDrop.setY(rainDrop.getY()+ 10);
 //            canvas.drawCircle(rainDrop.getX(),rainDrop.getY(),rainDrop.getRadius(), rainDrop.getPaint());
 //
+    }
+
+    private void drawBody(Canvas canvas, Paint rainColor, Rect hbody) {
+        canvas.drawRect(hbody ,rainColor);
     }
 
 }

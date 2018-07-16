@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Hangman cv;
     private AnimationHelper animationHelper;
     private static AlphabetFragment alphabetFragment;
 
@@ -31,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-        if (savedInstanceState == null) {
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-
-            transaction.add(R.id.container, new HangmanFragment());
-            transaction.commit();
-        }
+//        if (savedInstanceState == null) {
+//            FragmentManager manager = getSupportFragmentManager();
+//            FragmentTransaction transaction = manager.beginTransaction();
+//
+//            transaction.add(R.id.container, new HangmanFragment());
+//            transaction.commit();
+//        }
 
 //        cv = findViewById(R.id.hangman);
 

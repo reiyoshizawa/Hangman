@@ -1,6 +1,11 @@
 package com.bignerdranch.android.hangman;
 
+import android.annotation.SuppressLint;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.support.v4.app.Fragment;
@@ -8,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +23,20 @@ import java.util.Random;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AlphabetFragment extends Fragment implements View.OnClickListener {
+public class AlphabetFragment extends Fragment implements View.OnClickListener{
 
     private Question question;
     private TextView text_answer;
     private ArrayList<TextView> text_answer_array;
     private String string;
     private TextView text;
+    ImageView imageViewRope;
+    ImageView imageViewFace;
+    ImageView imageViewBody;
+    ImageView imageViewHand;
+    ImageView imageViewLegs;
+    ImageView imageViewFoot;
+    ArrayList<ImageView> arrayList;
 
     public AlphabetFragment() {
         // Required empty public constructor
@@ -35,11 +48,6 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alphabet, container, false);
-
-//        LinearLayout hangmanBlank = v.findViewById(R.id.hangmanBlock);
-//        TextView textView = new TextView(getContext());
-//        textView.setText("aaa");
-//        hangmanBlank.addView(textView);
 
         // binding data from XML
 
@@ -69,6 +77,42 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener {
             text_answer_array.add(text_answer);
         }
 
+        // set background image
+        LinearLayout hangmanBlank = v.findViewById(R.id.hangmanBlank);
+        imageViewRope = new ImageView(getContext());
+        imageViewRope.setX(310);
+        imageViewRope.setY(340);
+        imageViewFace = new ImageView(getContext());
+        imageViewFace.setX(310);
+        imageViewFace.setY(370);
+        imageViewBody = new ImageView(getContext());
+        imageViewBody.setX(200);
+        imageViewBody.setY(420);
+        imageViewHand = new ImageView(getContext());
+        imageViewHand.setX(200);
+        imageViewHand.setY(530);
+        imageViewLegs = new ImageView(getContext());
+        imageViewLegs.setX(0);
+        imageViewLegs.setY(560);
+        imageViewFoot = new ImageView(getContext());
+        imageViewFoot.setX(-60);
+        imageViewFoot.setY(670);
+
+        hangmanBlank.addView(imageViewRope);
+        hangmanBlank.addView(imageViewFace);
+        hangmanBlank.addView(imageViewBody);
+        hangmanBlank.addView(imageViewHand);
+        hangmanBlank.addView(imageViewLegs);
+        hangmanBlank.addView(imageViewFoot);
+
+        arrayList = new ArrayList<>();
+        arrayList.add(imageViewRope);
+        arrayList.add(imageViewBody);
+        arrayList.add(imageViewFace);
+        arrayList.add(imageViewFoot);
+        arrayList.add(imageViewHand);
+        arrayList.add(imageViewLegs);
+
         return v;
 
     }
@@ -85,15 +129,13 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener {
     }
 
     public void isYourGuessCorrect(String selectedWord) {
-        int counter = 0;
-
         ArrayList<Integer> indexes = new ArrayList<>();
         String  toUpperCase = string.toUpperCase();
         for (int i = 0; i < string.length(); i++) {
             if (toUpperCase.substring(i, i+1).equals(selectedWord)) {
                 indexes.add(i);
             } else {
-                counter = counter + 1;
+//                imageViewFace.setImageResource(R.drawable.face);
             }
         }
 
@@ -102,6 +144,11 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener {
             TextView tv = text_answer_array.get(right);
             if (tv.getText().toString().equals("_")) {
                 tv.setText(selectedWord);
+                Toast.makeText(getActivity(), "correct", Toast.LENGTH_SHORT).show();
+//                imageViewFace.setImageResource(R.drawable.face);
+            } else {
+                Toast.makeText(getActivity(), "wrong", Toast.LENGTH_SHORT).show();
+                imageViewFace.setImageResource(R.drawable.face);
             }
         }
 

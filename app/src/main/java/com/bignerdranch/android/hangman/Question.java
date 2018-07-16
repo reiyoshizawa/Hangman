@@ -34,7 +34,7 @@ public class Question {
     }
 
     public Question() {
-        this.q1 = "obstreperous";
+        this.q1 = "abcdefg";
         this.q2 = "contumacious";
         this.q3 = "mettlesome";
         this.q4 = "cadge";

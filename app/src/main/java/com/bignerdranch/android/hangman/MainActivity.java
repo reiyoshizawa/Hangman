@@ -30,17 +30,6 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-//        if (savedInstanceState == null) {
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//
-//            transaction.add(R.id.container, new HangmanFragment());
-//            transaction.commit();
-//        }
-
-//        cv = findViewById(R.id.hangman);
-
-
     }
 
     public void start(View view) {

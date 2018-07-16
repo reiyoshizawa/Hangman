@@ -1,6 +1,7 @@
 package com.bignerdranch.android.hangman;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,11 +26,10 @@ import java.util.Random;
  */
 public class AlphabetFragment extends Fragment implements View.OnClickListener{
 
-    private Question question;
+    private Question questions;
+    private String question;
     private TextView text_answer;
     private ArrayList<TextView> text_answer_array;
-    private String string;
-    private TextView text;
     ImageView imageViewRope;
     ImageView imageViewFace;
     ImageView imageViewBody;
@@ -37,6 +37,8 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener{
     ImageView imageViewLegs;
     ImageView imageViewFoot;
     ArrayList<ImageView> arrayList;
+    private int counter = 0;
+    Button selectedButton;
 
     public AlphabetFragment() {
         // Required empty public constructor
@@ -49,8 +51,6 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alphabet, container, false);
 
-        // binding data from XML
-
         // click the alphabet keyboard and get each alphabet data
         setupButtons(v);
 
@@ -60,13 +60,13 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener{
 //        int randomNum = random.nextInt(questionAllSize);
 //        string = question.getQuestion().get(0);
 //        System.out.println(string);
-        question = new Question();
-        string = question.getQ1();
+        questions = new Question();
+        question = questions.getQ1();
 
         // make blank TextView as same size of question string size and show it
         LinearLayout answerBlank = v.findViewById(R.id.answerBlank);
         text_answer_array = new ArrayList<>();
-        for (int i = 0; i < string.length(); i++) {
+        for (int i = 0; i < question.length(); i++) {
             text_answer = new TextView(getContext());
             text_answer.setId(i);
             text_answer.setText("_");
@@ -119,25 +119,34 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Toast toast = Toast.makeText(getActivity(), ((Button) v).getText() , Toast.LENGTH_SHORT);
+//        Toast toast = Toast.makeText(getActivity(), ((Button) v).getText() , Toast.LENGTH_SHORT);
+//        toast.show();
         String selectedWord = ((Button) v).getText().toString();
-        toast.show();
 
         // if the alphabet you clicked is matched to question's alphabet it shows question's alphabet
         // If not, selected alphabet in keyboard is to be color changed and the graphic is shown
         isYourGuessCorrect(selectedWord);
+
+        if (counter == 6) {
+            Intent intent = new Intent();
+            intent.putExtra("data", counter);
+            startActivity(intent);
+        }
     }
 
     public void isYourGuessCorrect(String selectedWord) {
         ArrayList<Integer> indexes = new ArrayList<>();
-        String  toUpperCase = string.toUpperCase();
-        for (int i = 0; i < string.length(); i++) {
+        String  toUpperCase = question.toUpperCase();
+        for (int i = 0; i < question.length(); i++) {
             if (toUpperCase.substring(i, i+1).equals(selectedWord)) {
+                counter --;
                 indexes.add(i);
             } else {
-//                imageViewFace.setImageResource(R.drawable.face);
+
             }
         }
+
+        showHangman();
 
         for(int i = 0; i < indexes.size(); i++) {
             int right = indexes.get(i);
@@ -145,15 +154,34 @@ public class AlphabetFragment extends Fragment implements View.OnClickListener{
             if (tv.getText().toString().equals("_")) {
                 tv.setText(selectedWord);
                 Toast.makeText(getActivity(), "correct", Toast.LENGTH_SHORT).show();
-//                imageViewFace.setImageResource(R.drawable.face);
-            } else {
-                Toast.makeText(getActivity(), "wrong", Toast.LENGTH_SHORT).show();
-                imageViewFace.setImageResource(R.drawable.face);
             }
         }
 
     }
 
+    public void showHangman() {
+        counter++;
+        switch (counter) {
+            case 1 :
+                imageViewRope.setImageResource(R.drawable.rope);
+                break;
+            case 2 :
+                imageViewFace.setImageResource(R.drawable.face);
+                break;
+            case 3 :
+                imageViewBody.setImageResource(R.drawable.body);
+                break;
+            case 4 :
+                imageViewHand.setImageResource(R.drawable.hand);
+                break;
+            case 5 :
+                imageViewLegs.setImageResource(R.drawable.legs);
+                break;
+            case 6 :
+                imageViewFoot.setImageResource(R.drawable.foot);
+                break;
+        }
+    }
 
     private void setupButtons(View v) {
         v.findViewById(R.id.button_a).setOnClickListener(this);
